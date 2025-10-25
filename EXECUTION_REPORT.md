@@ -61,6 +61,41 @@ git push -u origin claude/investigate-error-011CUULTPcn4QbxGL1DMi29J
 
 **結果:** ✅ 成功
 
+### ステップ 5: ビルド検証
+修正が正しく機能することを確認するため、実際にビルドコマンドを実行しました。
+
+```bash
+npm run build
+```
+
+**実行結果:**
+```
+> video-frame-extractor@1.0.0 build
+> tsc && vite build
+
+vite v5.4.21 building for production...
+transforming...
+✓ 31 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.60 kB │ gzip:  0.45 kB
+dist/assets/index-C1nqzkm7.css   12.79 kB │ gzip:  3.36 kB
+dist/assets/index-Dw91L4Yi.js   151.08 kB │ gzip: 49.27 kB
+✓ built in 1.67s
+```
+
+**ビルド成功の詳細:**
+- ✅ TypeScript コンパイル成功
+- ✅ Vite v5.4.21 によるプロダクションビルド完了
+- ✅ 31個のモジュールを変換
+- ✅ ビルド時間: 1.67秒
+- ✅ 出力ファイル:
+  - `dist/index.html` (0.60 kB / gzip: 0.45 kB)
+  - `dist/assets/index-C1nqzkm7.css` (12.79 kB / gzip: 3.36 kB)
+  - `dist/assets/index-Dw91L4Yi.js` (151.08 kB / gzip: 49.27 kB)
+
+この結果により、package-lock.json を追加した後、プロジェクトが正常にビルドできることが確認されました。
+
 ## 解決内容
 
 ### 修正前
@@ -69,9 +104,10 @@ git push -u origin claude/investigate-error-011CUULTPcn4QbxGL1DMi29J
 - ❌ ビルドが失敗
 
 ### 修正後
-- ✅ `package-lock.json` を追加
+- ✅ `package-lock.json` を追加（3094行）
 - ✅ GitHub Actions の npm キャッシュが正常に動作
 - ✅ 依存関係のバージョンが固定され、再現性が向上
+- ✅ **ビルド成功を確認** (1.67秒でビルド完了)
 
 ## 追加の利点
 

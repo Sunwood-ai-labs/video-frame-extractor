@@ -1,3 +1,7 @@
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/Sunwood-ai-labs/video-frame-extractor/refs/heads/main/Whisk_46bd303fa6af7baa2df4499c9cb00879eg.png" width="100%">
+
 # 動画フレーム抽出ツール (Video Frame Extractor)
 
 動画の最後の瞬間を美しい画像としてキャプチャするWebアプリケーションです。
@@ -6,6 +10,8 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.3.3-3178c6?logo=typescript)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.0-38bdf8?logo=tailwindcss)
 ![Vite](https://img.shields.io/badge/Vite-5.0.8-646cff?logo=vite)
+
+</div>
 
 ## 🎯 特徴
 

@@ -17,13 +17,13 @@
 
 ## 🚀 デモ
 
-[デモサイトはこちら](https://yourusername.github.io/video-frame-extractor/)
+[デモサイトはこちら](https://sunwood-ai-labs.github.io/video-frame-extractor/)
 
 ## 📦 インストール
 
 ```bash
 # リポジトリをクローン
-git clone https://github.com/yourusername/video-frame-extractor.git
+git clone https://github.com/Sunwood-ai-labs/video-frame-extractor.git
 
 # ディレクトリに移動
 cd video-frame-extractor

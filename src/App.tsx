@@ -37,10 +37,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.ReactNode;
 }
 const Button: React.FC<ButtonProps> = ({ children, variant = 'primary', icon, ...props }) => {
-  const baseClasses = "px-4 py-2 text-sm font-semibold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-200 ease-in-out inline-flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed";
+  const baseClasses = "px-4 py-2 text-sm font-semibold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-ocean-darkest transition-all duration-200 ease-in-out inline-flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed";
   const variantClasses = {
-    primary: "bg-sky-500 text-white hover:bg-sky-600 focus:ring-sky-500",
-    secondary: "bg-gray-700 text-gray-200 hover:bg-gray-600 focus:ring-gray-500"
+    primary: "bg-ocean text-white hover:bg-ocean-light hover:text-ocean-darkest focus:ring-ocean-light",
+    secondary: "bg-ocean-darker/80 text-ocean-lightest hover:bg-ocean-darker focus:ring-ocean"
   };
   return (
     <button className={`${baseClasses} ${variantClasses[variant]}`} {...props}>
@@ -51,7 +51,7 @@ const Button: React.FC<ButtonProps> = ({ children, variant = 'primary', icon, ..
 };
 
 const Spinner: React.FC = () => (
-    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-400"></div>
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-ocean-light"></div>
 );
 
 // --- App Component ---
@@ -224,17 +224,17 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-200 font-sans p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-transparent text-ocean-lightest font-sans p-4 sm:p-6 lg:p-8">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <header className="text-center mb-8">
           <div className="flex items-center justify-center gap-3">
-            <FilmIcon className="h-10 w-10 text-sky-400" />
-            <h1 className="text-4xl font-bold tracking-tight text-white">
+            <FilmIcon className="h-10 w-10 text-ocean-light" />
+            <h1 className="text-4xl font-bold tracking-tight text-ocean-lightest drop-shadow-lg">
               動画フレーム抽出ツール
             </h1>
           </div>
-          <p className="mt-2 text-lg text-gray-400">
+          <p className="mt-2 text-lg text-ocean-lightest drop-shadow-md">
             動画の最後の瞬間を美しい画像としてキャプチャします。
           </p>
         </header>
@@ -242,20 +242,20 @@ export default function App() {
         <main className="space-y-8">
           {/* Uploader */}
           {!videoFile && (
-            <div className="bg-gray-800 rounded-lg p-6 border-2 border-dashed border-gray-600 hover:border-sky-500 transition-colors duration-300">
+            <div className="bg-ocean-darker/90 backdrop-blur-sm rounded-lg p-6 border-2 border-dashed border-ocean hover:border-ocean-light transition-colors duration-300 shadow-xl">
               <div
                   onDrop={handleDrop}
                   onDragOver={handleDragOver}
                   onDragEnter={handleDragEnter}
                   onDragLeave={handleDragLeave}
                   onClick={() => fileInputRef.current?.click()}
-                  className={`flex flex-col items-center justify-center p-8 rounded-md cursor-pointer ${isDragging ? 'bg-gray-700' : ''}`}
+                  className={`flex flex-col items-center justify-center p-8 rounded-md cursor-pointer ${isDragging ? 'bg-ocean-darkest/50' : ''}`}
               >
-                  <UploadIcon className="h-12 w-12 text-gray-500 mb-4" />
-                  <p className="text-lg font-semibold text-gray-300">
+                  <UploadIcon className="h-12 w-12 text-ocean-light mb-4" />
+                  <p className="text-lg font-semibold text-ocean-lightest">
                     ここに動画をドラッグ＆ドロップ
                   </p>
-                  <p className="text-gray-400">またはクリックしてファイルを選択</p>
+                  <p className="text-ocean-light">またはクリックしてファイルを選択</p>
                   <input
                       type="file"
                       accept="video/*"
@@ -271,21 +271,21 @@ export default function App() {
 
           {/* Video Player and Controls */}
           {videoUrl && (
-            <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
-              <h2 className="text-2xl font-semibold mb-4 text-white">ビデオプレビュー</h2>
+            <div className="bg-ocean-darker/90 backdrop-blur-sm rounded-lg p-6 shadow-xl">
+              <h2 className="text-2xl font-semibold mb-4 text-ocean-lightest">ビデオプレビュー</h2>
               <div className="aspect-video w-full mb-4 bg-black rounded-md overflow-hidden">
                 <video ref={videoRef} src={videoUrl} controls className="w-full h-full object-contain"></video>
                 <canvas ref={canvasRef} className="hidden"></canvas>
               </div>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 flex-wrap">
                 <div className="flex items-center gap-2">
-                  <label htmlFor="image-format" className="text-sm font-medium text-gray-300">保存形式:</label>
+                  <label htmlFor="image-format" className="text-sm font-medium text-ocean-lightest">保存形式:</label>
                   <select
                     id="image-format"
                     value={imageFormat}
                     onChange={(e) => setImageFormat(e.target.value as 'jpeg' | 'png')}
                     disabled={isExtracting}
-                    className="bg-gray-700 border border-gray-600 text-white text-sm rounded-md focus:ring-sky-500 focus:border-sky-500 block w-auto p-2 cursor-pointer"
+                    className="bg-ocean-darkest border border-ocean text-ocean-lightest text-sm rounded-md focus:ring-ocean-light focus:border-ocean-light block w-auto p-2 cursor-pointer"
                   >
                     <option value="jpeg">JPEG</option>
                     <option value="png">PNG</option>
@@ -305,13 +305,13 @@ export default function App() {
           {isExtracting && (
              <div className="flex flex-col items-center justify-center gap-4 p-8">
                <Spinner />
-               <p className="text-sky-400">フレームを抽出しています。しばらくお待ちください...</p>
+               <p className="text-ocean-light">フレームを抽出しています。しばらくお待ちください...</p>
              </div>
           )}
 
           {extractedFrames.length > 0 && (
-            <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
-              <h2 className="text-2xl font-semibold mb-4 text-white">抽出されたフレーム</h2>
+            <div className="bg-ocean-darker/90 backdrop-blur-sm rounded-lg p-6 shadow-xl">
+              <h2 className="text-2xl font-semibold mb-4 text-ocean-lightest">抽出されたフレーム</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                 {extractedFrames.map((frame, index) => {
                     const frameNumber = extractedFrames.length - 1 - index;
@@ -348,7 +348,7 @@ export default function App() {
           )}
         </main>
 
-        <footer className="text-center mt-12 text-gray-500 text-sm">
+        <footer className="text-center mt-12 text-ocean-light text-sm drop-shadow-md">
           <p>&copy; {new Date().getFullYear()} Video Frame Extractor. All rights reserved.</p>
         </footer>
       </div>

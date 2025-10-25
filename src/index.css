@@ -21,4 +21,21 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://raw.githubusercontent.com/Sunwood-ai-labs/video-frame-extractor/refs/heads/main/Whisk_46bd303fa6af7baa2df4499c9cb00879eg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  filter: blur(8px);
+  z-index: -1;
 }
